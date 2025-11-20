@@ -1,0 +1,8 @@
+{
+  "name": "Lua Baby",
+  "description": "E-commerce infantil com experiências interativas de IA, gamificação e design moderno.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
