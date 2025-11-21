@@ -1,26 +1,26 @@
-
 import React from 'react';
-import { ShoppingBag, Menu, Sparkles, Shirt, User, Camera, Sun, Moon, Cloud, Grid, Heart } from 'lucide-react';
-import { ViewState } from '../types';
+import { ShoppingBag, Sparkles, Shirt, User, Camera, Sun, Moon, Cloud, Grid, Heart } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
   cartCount: number;
   wishlistCount: number;
-  currentView: ViewState;
-  setView: (view: ViewState) => void;
   toggleCart: () => void;
   isNightMode: boolean;
   toggleTheme: () => void;
+  isAdminAuthenticated: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, setView, toggleCart, isNightMode, toggleTheme }) => {
+const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, toggleCart, isNightMode, toggleTheme, isAdminAuthenticated }) => {
+  const navigate = useNavigate();
+
   return (
     <nav className="sticky top-4 z-50 mx-4 transition-all duration-500">
       <div className={`rounded-2xl px-6 py-4 flex justify-between items-center transition-all duration-1000 ${isNightMode ? 'glass-dark' : 'glass'}`}>
         {/* Logo */}
         <div 
           className="flex items-center gap-2 cursor-pointer group"
-          onClick={() => setView(ViewState.HOME)}
+          onClick={() => navigate('/')}
         >
           <div className="relative">
             <Sparkles className={`w-8 h-8 animate-spin-slow ${isNightMode ? 'text-yellow-300' : 'text-moon-400'}`} />
@@ -33,39 +33,39 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, setView, togg
 
         {/* Desktop Menu */}
         <div className={`hidden md:flex gap-8 items-center font-bold transition-colors duration-500 ${isNightMode ? 'text-gray-300' : 'text-gray-600'}`}>
-          <button 
-            onClick={() => setView(ViewState.HOME)}
+          <Link 
+            to="/"
             className={`hover:text-sky-400 transition-colors flex items-center gap-1 ${isNightMode ? 'hover:text-sky-300' : ''}`}
           >
             Início
-          </button>
-          <button 
-            onClick={() => setView(ViewState.COLLECTIONS)}
+          </Link>
+          <Link 
+            to="/colecoes"
             className={`hover:text-sky-400 transition-colors flex items-center gap-1 ${isNightMode ? 'hover:text-sky-300' : ''}`}
           >
             <Grid className="w-4 h-4" />
             Coleções
-          </button>
-          <button 
-            onClick={() => setView(ViewState.MIX_MATCH)}
+          </Link>
+          <Link 
+            to="/montar-look"
             className="hover:text-hotpink-500 transition-colors flex items-center gap-1"
           >
             <Shirt className="w-4 h-4" />
             Montar Look
-          </button>
-          <button 
-            onClick={() => setView(ViewState.GEMINI_TOOLS)}
+          </Link>
+          <Link 
+            to="/estudio-magico"
             className={`transition-colors flex items-center gap-1 px-3 py-1 rounded-full border ${isNightMode ? 'bg-purple-900/50 border-purple-700 text-purple-300 hover:text-white' : 'bg-purple-100 border-purple-200 text-purple-500 hover:text-purple-600'}`}
           >
             <Camera className="w-4 h-4" />
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Estúdio Mágico</span>
-          </button>
+          </Link>
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-6">
           
-          {/* THEME TOGGLE - WOW FACTOR */}
+          {/* THEME TOGGLE */}
           <div className="group relative hidden sm:block">
             <button 
               onClick={toggleTheme}
@@ -73,7 +73,6 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, setView, togg
             >
               {/* Background elements for switch */}
               <div className={`absolute inset-0 transition-opacity duration-700 ${isNightMode ? 'opacity-100' : 'opacity-0'}`}>
-                 {/* Tiny stars in button */}
                  <div className="absolute top-2 left-3 w-0.5 h-0.5 bg-white rounded-full"></div>
                  <div className="absolute bottom-2 left-6 w-0.5 h-0.5 bg-white rounded-full"></div>
               </div>
@@ -95,8 +94,8 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, setView, togg
           </div>
 
           <div className="flex items-center gap-3">
-            <button 
-                onClick={() => setView(ViewState.WISHLIST)}
+            <Link 
+                to="/favoritos"
                 className={`relative p-2 rounded-full transition-colors ${isNightMode ? 'hover:bg-white/10 text-gray-300' : 'hover:bg-sky-50 text-gray-500 hover:text-red-500'}`}
                 title="Meus Favoritos"
             >
@@ -106,14 +105,14 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, wishlistCount, setView, togg
                         {wishlistCount}
                     </span>
                 )}
-            </button>
+            </Link>
 
-            <button 
-                onClick={() => setView(ViewState.ADMIN)}
+            <Link 
+                to={isAdminAuthenticated ? "/admin" : "/login"}
                 className={`p-2 rounded-full transition-colors ${isNightMode ? 'hover:bg-white/10 text-gray-300' : 'hover:bg-sky-50 text-gray-500'}`}
             >
                 <User className="w-5 h-5" />
-            </button>
+            </Link>
             
             <button 
                 onClick={toggleCart}
