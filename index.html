@@ -1,204 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lua Baby - Moda Infantil Premium</title>
-    <meta name="description" content="E-commerce infantil com experiências interativas de IA, gamificação e design moderno." />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              sky: {
-                50: '#f0f9ff',
-                100: '#e0f2fe',
-                300: '#7dd3fc',
-                400: '#38bdf8',
-                500: '#0ea5e9',
-                600: '#0284c7',
-              },
-              moon: {
-                50: '#fefce8',
-                100: '#fef9c3',
-                300: '#fde047',
-                400: '#facc15',
-                500: '#eab308',
-              },
-              hotpink: {
-                50: '#fdf2f8',
-                100: '#fce7f3',
-                400: '#f472b6',
-                500: '#ec4899',
-                600: '#db2777',
-              },
-              midnight: {
-                800: '#1e1b4b',
-                900: '#0f172a',
-                950: '#020617',
-              },
-              gold: {
-                300: '#fcd34d',
-                400: '#fbbf24',
-                500: '#f59e0b',
-                600: '#d97706',
-              }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lua Baby - Moda Infantil Premium</title>
+  <meta name="description"
+    content="E-commerce infantil com experiências interativas de IA, gamificação e design moderno." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sky: { 50: '#f0f9ff', 100: '#e0f2fe', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+            moon: { 50: '#fefce8', 100: '#fef9c3', 300: '#fde047', 400: '#facc15', 500: '#eab308' },
+            hotpink: { 50: '#fdf2f8', 100: '#fce7f3', 400: '#f472b6', 500: '#ec4899', 600: '#db2777' },
+            midnight: { 800: '#1e1b4b', 900: '#0f172a', 950: '#020617' },
+            gold: { 300: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+          },
+          fontFamily: {
+            sans: ['Quicksand', 'sans-serif'],
+            display: ['Fredoka', 'cursive'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+            'slide-up': 'slideUp 0.6s ease-out forwards',
+            'slide-in-right': 'slideInRight 0.4s ease-out forwards',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'twinkle': 'twinkle 3s ease-in-out infinite',
+            'shooting-star': 'shootingStar 5s linear infinite',
+            'spin-slow': 'spin 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-15px)' },
             },
-            fontFamily: {
-              sans: ['Quicksand', 'sans-serif'],
-              display: ['Fredoka', 'cursive'],
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
             },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'fade-in': 'fadeIn 0.5s ease-out forwards',
-              'slide-up': 'slideUp 0.6s ease-out forwards',
-              'slide-in-right': 'slideInRight 0.4s ease-out forwards',
-              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'twinkle': 'twinkle 3s ease-in-out infinite',
-              'shooting-star': 'shootingStar 5s linear infinite',
-              'spin-slow': 'spin 8s linear infinite',
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
             },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-15px)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-              },
-              slideInRight: {
-                '0%': { transform: 'translateX(100%)' },
-                '100%': { transform: 'translateX(0)' },
-              },
-              twinkle: {
-                '0%, 100%': { opacity: '0.3', transform: 'scale(0.8)' },
-                '50%': { opacity: '1', transform: 'scale(1.2)' },
-              },
-              shootingStar: {
-                '0%': { transform: 'translateX(0) translateY(0) rotate(-45deg)', opacity: '1' },
-                '100%': { transform: 'translateX(-500px) translateY(500px) rotate(-45deg)', opacity: '0' },
-              }
+            slideInRight: {
+              '0%': { transform: 'translateX(100%)' },
+              '100%': { transform: 'translateX(0)' },
+            },
+            twinkle: {
+              '0%, 100%': { opacity: '0.3', transform: 'scale(0.8)' },
+              '50%': { opacity: '1', transform: 'scale(1.2)' },
+            },
+            shootingStar: {
+              '0%': { transform: 'translateX(0) translateY(0) rotate(-45deg)', opacity: '1' },
+              '100%': { transform: 'translateX(-500px) translateY(500px) rotate(-45deg)', opacity: '0' },
             }
           }
         }
       }
-    </script>
-    <style>
-      body {
-        font-family: 'Quicksand', sans-serif;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 1s ease, color 1s ease;
-      }
-      
-      /* Magical Twilight Gradient (Light Mode) */
-      .bg-day {
-        /* Sunset to Moonrise: Warm Orange -> Soft Rose -> Cool Indigo */
-        background: linear-gradient(120deg, #ffedd5 0%, #ffe4e6 50%, #e0e7ff 100%);
-        background-attachment: fixed;
-      }
+    }
+  </script>
 
-      .bg-night {
-        background: linear-gradient(to bottom, #0f172a, #312e81);
-        background-attachment: fixed;
-        color: #e2e8f0;
+  <!-- Polyfill for process.env -->
+  <script>
+    window.process = {
+      env: {
+        NODE_ENV: 'development',
+        FIREBASE_API_KEY: 'mock-key',
+        GEMINI_API_KEY: ''
       }
-      
-      /* Refined Glassmorphism (Higher Contrast for Colorful Backgrounds) */
-      .glass {
-        background: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 8px 32px rgba(244, 63, 94, 0.1); /* Rose-tinted shadow */
-      }
-      
-      .glass-premium {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1); /* Indigo-tinted shadow */
-      }
+    };
+  </script>
 
-      /* Night Glass */
-      .glass-dark {
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        color: #f1f5f9;
-      }
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 1s ease, color 1s ease;
+    }
 
-      .glass-card {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        box-shadow: 0 10px 20px rgba(244, 63, 94, 0.05); /* Soft Rose shadow */
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+    /* Magical Twilight Gradient (Light Mode) */
+    .bg-day {
+      background: linear-gradient(120deg, #ffedd5 0%, #ffe4e6 50%, #e0e7ff 100%);
+      background-attachment: fixed;
+    }
 
-      .glass-card-dark {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+    .bg-night {
+      background: linear-gradient(to bottom, #0f172a, #312e81);
+      background-attachment: fixed;
+      color: #e2e8f0;
+    }
 
-      /* Scrollbar Hiding */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+    /* Refined Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px rgba(244, 63, 94, 0.1);
+    }
 
-      /* Custom Scrollbar for grids */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-      
-      .transition-theme {
-        transition: all 1s ease-in-out;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^6.22.3",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
-  }
-}
-</script>
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);
+    }
+
+    /* Night Glass */
+    .glass-dark {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      color: #f1f5f9;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 10px 20px rgba(244, 63, 94, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card-dark {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Scrollbar Hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Custom Scrollbar for grids */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .transition-theme {
+      transition: all 1s ease-in-out;
+    }
+  </style>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<body>
+  <div id="root"></div>
+  <!-- Main Entry Point -->
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

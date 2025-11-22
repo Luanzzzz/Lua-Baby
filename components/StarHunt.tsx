@@ -26,10 +26,14 @@ const StarHunt: React.FC<StarHuntProps> = ({ onStarFound, totalStarsFound }) => 
   if (!isVisible || totalStarsFound >= 3) return null;
 
   return (
-    <div 
+    <div
       onClick={handleClick}
       className="absolute cursor-pointer z-50 animate-pulse hover:scale-125 transition-transform duration-300"
       style={{ top: position.top, left: position.left }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClick(e as any); }}
+      aria-label="Encontrar estrela escondida"
     >
       <Star className="w-8 h-8 text-moon-400 fill-moon-300 drop-shadow-lg" />
     </div>
