@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Flame, Heart } from 'lucide-react';
 import { Product } from '../types';
 import { useTheme } from '../contexts/ThemeContext';
+import OptimizedImage from './OptimizedImage';
 
 const ProductCard: React.FC<{
     product: Product,
@@ -21,7 +22,7 @@ const ProductCard: React.FC<{
     };
 
     return (
-        <div className={`group relative rounded-[2rem] p-4 transition-all duration-500 h-full flex flex-col hover:-translate-y-2 ${isNightMode ? 'glass-card-dark hover:shadow-indigo-500/20 border border-indigo-800/50' : 'glass-card hover:shadow-2xl hover:shadow-rose-500/10 border border-white/60'}`}>
+        <div className={`group relative rounded-[2rem] p-4 transition-all duration-500 h-full flex flex-col hover:-translate-y-2 active:scale-[0.98] ${isNightMode ? 'glass-card-dark hover:shadow-indigo-500/20 border border-indigo-800/50' : 'glass-card hover:shadow-2xl hover:shadow-rose-500/10 border border-white/60'}`}>
 
             {isBestSeller && (
                 <div className="absolute -top-3 left-0 right-0 flex justify-center z-20">
@@ -38,17 +39,16 @@ const ProductCard: React.FC<{
                 tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavigate(); }}
             >
-                <img
+                <OptimizedImage
                     src={product.image || 'https://via.placeholder.com/500'}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/500?text=No+Image'; }}
                 />
 
                 {!isPreview && (
                     <button
                         onClick={(e) => { e.stopPropagation(); onToggleWishlist(product.id); }}
-                        className="absolute top-4 right-4 p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-md hover:bg-white transition-colors hover:scale-110 active:scale-95 z-20"
+                        className="absolute top-4 right-4 p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-md hover:bg-white transition-colors hover:scale-110 active:scale-90 z-20"
                         aria-label={isWishlisted ? "Remover dos favoritos" : "Adicionar aos favoritos"}
                     >
                         <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-400'}`} />

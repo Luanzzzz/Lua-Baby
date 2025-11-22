@@ -3,14 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Ruler, ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
 import { useTheme } from '../contexts/ThemeContext';
+import { useCart } from '../contexts/CartContext';
 import SEO from './SEO';
 import CustomerReviews from './CustomerReviews';
 import SizeCalculator from './SizeCalculator';
 
-const ProductPage: React.FC<{ products: Product[], onAddToCart: (p: Product, s: string, c: string) => void }> = ({ products, onAddToCart }) => {
+const ProductPage: React.FC<{ products: Product[] }> = ({ products }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { isNightMode } = useTheme();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState<Product | null>(null);
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColor, setSelectedColor] = useState('');
@@ -111,7 +113,7 @@ const ProductPage: React.FC<{ products: Product[], onAddToCart: (p: Product, s: 
                     </div>
 
                     <button
-                        onClick={() => onAddToCart(product, selectedSize, selectedColor)}
+                        onClick={() => addToCart(product, selectedSize, selectedColor)}
                         className="w-full py-5 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-2xl font-bold text-xl shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3"
                     >
                         <ShoppingBag className="w-6 h-6" /> Adicionar à Sacola

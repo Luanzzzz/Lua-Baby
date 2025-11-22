@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import { ArrowRight, RefreshCcw, ShoppingBag, Shuffle, Sparkles } from 'lucide-react';
+import { useCart } from '../contexts/CartContext';
 
 interface MixMatchProps {
   products: Product[];
-  onAddToCart: (product: Product, size: string, color: string) => void;
 }
 
-const MixMatchStudio: React.FC<MixMatchProps> = ({ products, onAddToCart }) => {
+const MixMatchStudio: React.FC<MixMatchProps> = ({ products }) => {
   const tops = products.filter(p => p.category === 'top' || p.category === 'fullbody');
   const bottoms = products.filter(p => p.category === 'bottom');
+  const { addToCart } = useCart();
 
   const [selectedTop, setSelectedTop] = useState<Product>(tops[0]);
   const [selectedBottom, setSelectedBottom] = useState<Product | null>(bottoms[0] || null);
@@ -17,12 +18,11 @@ const MixMatchStudio: React.FC<MixMatchProps> = ({ products, onAddToCart }) => {
 
   const handleAddLook = () => {
     if (selectedTop) {
-      onAddToCart(selectedTop, selectedTop.sizes[0] || 'Único', selectedTop.colors?.[0] || 'Padrão');
+      addToCart(selectedTop, selectedTop.sizes[0] || 'Único', selectedTop.colors?.[0] || 'Padrão');
     }
     if (selectedBottom) {
-      onAddToCart(selectedBottom, selectedBottom.sizes[0] || 'Único', selectedBottom.colors?.[0] || 'Padrão');
+      addToCart(selectedBottom, selectedBottom.sizes[0] || 'Único', selectedBottom.colors?.[0] || 'Padrão');
     }
-    // Parent component handles toast now
   };
 
   const handleShuffle = () => {

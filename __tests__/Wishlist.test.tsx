@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { HashRouter } from 'react-router-dom';
+import { render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { getProducts } from '../services/firebaseService';
 
@@ -32,10 +33,11 @@ describe('Wishlist Tests', () => {
   });
 
   it('should add item to wishlist when heart icon is clicked', async () => {
+    const user = userEvent.setup();
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Wait for products to load
@@ -44,17 +46,11 @@ describe('Wishlist Tests', () => {
     });
 
     // Find heart icon button
-    const heartButtons = screen.getAllByRole('button');
-    const wishlistButton = heartButtons.find(btn => 
-      btn.querySelector('.lucide-heart')
-    );
-
+    const wishlistButton = screen.getByRole('button', { name: /Adicionar aos favoritos/i });
     expect(wishlistButton).toBeInTheDocument();
 
     // Click heart icon
-    if (wishlistButton) {
-      fireEvent.click(wishlistButton);
-    }
+    await user.click(wishlistButton);
 
     // Check if wishlist count updated
     await waitFor(() => {
@@ -65,10 +61,11 @@ describe('Wishlist Tests', () => {
   });
 
   it('should remove item from wishlist when heart icon is clicked again', async () => {
+    const user = userEvent.setup();
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Wait for products to load
@@ -77,22 +74,17 @@ describe('Wishlist Tests', () => {
     });
 
     // Find and click heart icon to add
-    const heartButtons = screen.getAllByRole('button');
-    const wishlistButton = heartButtons.find(btn => 
-      btn.querySelector('.lucide-heart')
-    );
+    const wishlistButton = screen.getByRole('button', { name: /Adicionar aos favoritos/i });
+    await user.click(wishlistButton);
 
-    if (wishlistButton) {
-      // Add to wishlist
-      fireEvent.click(wishlistButton);
-      
-      await waitFor(() => {
-        expect(screen.getByText('1')).toBeInTheDocument();
-      });
+    await waitFor(() => {
+      expect(screen.getByText('1')).toBeInTheDocument();
+    });
 
-      // Remove from wishlist
-      fireEvent.click(wishlistButton);
-    }
+    // Remove from wishlist
+    // Label changes to "Remover dos favoritos"
+    const removeButton = screen.getByRole('button', { name: /Remover dos favoritos/i });
+    await user.click(removeButton);
 
     // Wishlist should be empty
     await waitFor(() => {
@@ -103,10 +95,11 @@ describe('Wishlist Tests', () => {
   });
 
   it('should display wishlisted items on favorites page', async () => {
+    const user = userEvent.setup();
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Wait for products and add to wishlist
@@ -114,18 +107,12 @@ describe('Wishlist Tests', () => {
       expect(screen.getByText('Vestido Floral')).toBeInTheDocument();
     });
 
-    const heartButtons = screen.getAllByRole('button');
-    const wishlistButton = heartButtons.find(btn => 
-      btn.querySelector('.lucide-heart')
-    );
-
-    if (wishlistButton) {
-      fireEvent.click(wishlistButton);
-    }
+    const wishlistButton = screen.getByRole('button', { name: /Adicionar aos favoritos/i });
+    await user.click(wishlistButton);
 
     // Navigate to favorites page
-    const favoritesLink = screen.getByText(/Favoritos/i);
-    fireEvent.click(favoritesLink);
+    const favoritesLink = screen.getByTitle(/Meus Favoritos/i);
+    await user.click(favoritesLink);
 
     // Check if product appears on favorites page
     await waitFor(() => {
@@ -134,10 +121,11 @@ describe('Wishlist Tests', () => {
   });
 
   it('should persist wishlist state across navigation', async () => {
+    const user = userEvent.setup();
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Add to wishlist
@@ -145,22 +133,17 @@ describe('Wishlist Tests', () => {
       expect(screen.getByText('Vestido Floral')).toBeInTheDocument();
     });
 
-    const heartButtons = screen.getAllByRole('button');
-    const wishlistButton = heartButtons.find(btn => 
-      btn.querySelector('.lucide-heart')
-    );
+    const wishlistButton = screen.getByRole('button', { name: /Adicionar aos favoritos/i });
+    await user.click(wishlistButton);
 
-    if (wishlistButton) {
-      fireEvent.click(wishlistButton);
-    }
+    // Navigate to collections using "Ver Coleção" button
+    const collectionsLink = await screen.findByText(/Ver Coleção/i);
+    await user.click(collectionsLink);
 
-    // Navigate to collections
-    const collectionsLink = screen.getByText(/Coleções/i);
-    fireEvent.click(collectionsLink);
-
-    // Navigate back to home
-    const homeLink = screen.getByText(/Início/i);
-    fireEvent.click(homeLink);
+    // Navigate back to home using Logo
+    const navigation = screen.getByRole('navigation');
+    const homeLink = within(navigation).getByText(/Coleções/i);
+    await user.click(homeLink);
 
     // Wishlist count should still be 1
     await waitFor(() => {

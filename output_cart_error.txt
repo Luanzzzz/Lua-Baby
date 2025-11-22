@@ -1,0 +1,275 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.13 [39m[90mD:/Projetos_pessoais/Lua-Baby[39m
+
+ [31m❯[39m __tests__/Cart.test.tsx [2m([22m[2m7 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 527[2mms[22m[39m
+     [32m✓[39m should not render when isCartOpen is false[32m 24[2mms[22m[39m
+     [32m✓[39m should render empty state correctly[32m 16[2mms[22m[39m
+     [32m✓[39m should display items and calculate total price correctly[32m 13[2mms[22m[39m
+[31m     [31m×[31m should call removeFromCart when remove button is clicked[39m[33m 454[2mms[22m[39m
+     [32m✓[39m should call clearCart when clear button is clicked[32m 9[2mms[22m[39m
+     [32m✓[39m should display "Finalizar pelo WhatsApp" button when items exist[32m 6[2mms[22m[39m
+     [32m✓[39m should disable action buttons when cart is empty[32m 4[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m __tests__/Cart.test.tsx[2m > [22mCartDrawer Component[2m > [22mshould call removeFromCart when remove button is clicked
+[31m[1mTestingLibraryElementError[22m[39m: Unable to find an accessible element with the role "button" and name `/Remover item/i`
+
+Here are the accessible roles:
+
+  heading:
+
+  Name "Sacola (2)":
+  [36m<h2[39m
+    [33mclass[39m=[32m"font-bold text-xl"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Fechar sacola":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Fechar sacola"[39m
+  [36m/>[39m
+
+  Name "Remover Camiseta Estelar":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remover Camiseta Estelar"[39m
+  [36m/>[39m
+
+  Name "Remover Calça Cometa":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remover Calça Cometa"[39m
+  [36m/>[39m
+
+  Name "Message Finalizar pelo WhatsApp":
+  [36m<button[39m
+    [33mclass[39m=[32m"w-full py-3 bg-green-500 text-white rounded-xl font-bold hover:bg-green-600 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-500/20"[39m
+  [36m/>[39m
+
+  Name "Limpar Sacola":
+  [36m<button[39m
+    [33mclass[39m=[32m"w-full py-3 rounded-xl font-bold border transition-colors border-gray-200 hover:bg-gray-50 text-gray-600"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  img:
+
+  Name "Camiseta Estelar":
+  [36m<img[39m
+    [33malt[39m=[32m"Camiseta Estelar"[39m
+    [33mclass[39m=[32m"w-16 h-16 rounded-lg object-cover"[39m
+    [33msrc[39m=[32m"img1.jpg"[39m
+  [36m/>[39m
+
+  Name "Calça Cometa":
+  [36m<img[39m
+    [33malt[39m=[32m"Calça Cometa"[39m
+    [33mclass[39m=[32m"w-16 h-16 rounded-lg object-cover"[39m
+    [33msrc[39m=[32m"img2.jpg"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"font-bold text-sm"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-gray-500"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm font-bold text-hotpink-500 mt-1"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"font-bold text-sm"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-gray-500"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm font-bold text-hotpink-500 mt-1"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 z-[150] flex justify-end"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"relative w-full max-w-md h-full shadow-2xl flex flex-col animate-slide-in-right bg-white/95 backdrop-blur-xl text-gray-900"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"p-6 border-b flex justify-between items-center"[39m
+        [36m>[39m
+          [36m<h2[39m
+            [33mclass[39m=[32m"font-bold text-xl"[39m
+          [36m>[39m
+            [0mSacola ([0m
+            [0m2[0m
+            [0m)[0m
+          [36m</h2>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Fechar sacola"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mdata-testid[39m=[32m"icon-x"[39m
+            [36m>[39m
+              [0mX[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex-1 overflow-y-auto p-6"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex gap-4 mb-4"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Camiseta Estelar"[39m
+              [33mclass[39m=[32m"w-16 h-16 rounded-lg object-cover"[39m
+              [33msrc[39m=[32m"img1.jpg"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex-1"[39m
+            [36m>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"font-bold text-sm"[39m
+              [36m>[39m
+                [0mCamiseta Estelar[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-xs text-gray-500"[39m
+              [36m>[39m
+                [0m4[0m
+                [0m • [0m
+                [0mAzul[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-sm font-bold text-hotpink-500 mt-1"[39m
+              [36m>[39m
+                [0mR$ [0m
+                [0m49.90[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Remover Camiseta Estelar"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mdata-testid[39m=[32m"icon-trash"[39m
+              [36m>[39m
+                [0mTrash[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex gap-4 mb-4"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m"Calça Cometa"[39m
+              [33mclass[39m=[32m"w-16 h-16 rounded-lg object-cover"[39m
+              [33msrc[39m=[32m"img2.jpg"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex-1"[39m
+            [36m>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"font-bold text-sm"[39m
+              [36m>[39m
+                [0mCalça Cometa[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-xs text-gray-500"[39m
+              [36m>[39m
+                [0m2[0m
+                [0m • [0m
+                [0mPreto[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-sm font-bold text-hotpink-500 mt-1"[39m
+              [36m>[39m
+                [0mR$ [0m
+                [0m89.90[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Remover Calça Cometa"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mdata-testid[39m=[32m"icon-trash"[39m
+              [36m>[39m
+                [0mTrash[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"p-6 border-t space-y-3"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex justify-between mb-2 font-bold text-lg"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mTotal[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mR$ [0m
+              [0m80.00[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"w-full py-3 bg-green-500 text-white rounded-xl font-bold hover:bg-green-600 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-500/20"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mdata-testid[39m=[32m"icon-message"[39m
+            [36m>[39m
+              [0mMessage[0m
+            [36m</span>[39m
+            [0m Finalizar pelo WhatsApp[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"w-full py-3 rounded-xl font-bold border transition-colors border-gray-200 hover:bg-gray-50 text-gray-600"[39m
+          [36m>[39m
+            [0mLimpar Sacola[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m109:15[22m[39m
+[36m [2m❯[22m __tests__/Cart.test.tsx:[2m136:34[22m[39m
+    [90m134| [39m    [34mrender[39m([33m<[39m[33mCartDrawer[39m [33m/[39m[33m>[39m)[33m;[39m
+    [90m135| [39m
+    [90m136| [39m    const removeButtons = screen.getAllByRole('button', { name: /Remov…
+    [90m   | [39m                                 [31m^[39m
+    [90m137| [39m    fireEvent[33m.[39m[34mclick[39m(removeButtons[[34m0[39m])[33m;[39m
+    [90m138| [39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m6 passed[39m[22m[90m (7)[39m
+[2m   Start at [22m 11:46:05
+[2m   Duration [22m 1.75s[2m (transform 105ms, setup 217ms, collect 117ms, tests 527ms, environment 681ms, prepare 17ms)[22m
+
