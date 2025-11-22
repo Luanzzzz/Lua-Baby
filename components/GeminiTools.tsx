@@ -71,7 +71,7 @@ const GeminiTools: React.FC = () => {
     <div className="container mx-auto px-4 py-8 max-w-5xl animate-slide-up">
       <div className="text-center mb-12">
         <div className="inline-block p-3 bg-purple-100 rounded-2xl mb-4">
-            <Sparkles className="w-8 h-8 text-purple-500 animate-pulse" />
+          <Sparkles className="w-8 h-8 text-purple-500 animate-pulse" />
         </div>
         <h2 className="text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
           Estúdio Mágico IA
@@ -107,9 +107,12 @@ const GeminiTools: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Input Section */}
           <div className="space-y-8">
-            <div 
+            <div
               onClick={() => fileInputRef.current?.click()}
               className="group border-3 border-dashed border-purple-200 rounded-3xl h-72 flex flex-col items-center justify-center bg-purple-50/30 cursor-pointer hover:bg-purple-50 hover:border-purple-400 transition-all relative overflow-hidden"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') fileInputRef.current?.click(); }}
             >
               {image ? (
                 <img src={image} alt="Upload" className="w-full h-full object-contain p-2 rounded-3xl" />
@@ -122,21 +125,22 @@ const GeminiTools: React.FC = () => {
                   <p className="text-sm opacity-70 mt-1">Suporta JPG e PNG</p>
                 </div>
               )}
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                className="hidden" 
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
                 accept="image/*"
                 onChange={handleFileChange}
               />
             </div>
 
             <div className="space-y-3">
-              <label className="text-gray-700 font-bold ml-1 flex items-center gap-2">
+              <label htmlFor="prompt-input" className="text-gray-700 font-bold ml-1 flex items-center gap-2">
                 {mode === 'edit' ? <ImageIcon className="w-4 h-4" /> : <Zap className="w-4 h-4" />}
                 {mode === 'edit' ? 'O que você quer mudar?' : 'Como o vídeo deve ser?'}
               </label>
               <textarea
+                id="prompt-input"
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder={mode === 'edit' ? "Ex: Adicione asas de fada, coloque o bebê na lua..." : "Ex: Faça o bebê sorrir e acenar, adicione brilhos caindo..."}
@@ -171,15 +175,15 @@ const GeminiTools: React.FC = () => {
                 <p className="font-medium">A mágica aparecerá aqui</p>
               </div>
             )}
-            
+
             {isLoading && (
               <div className="text-center space-y-6 relative z-10 px-4">
                 <div className="relative mx-auto w-24 h-24">
-                    <div className="absolute inset-0 border-t-4 border-pink-500 rounded-full animate-spin"></div>
-                    <div className="absolute inset-2 border-t-4 border-purple-500 rounded-full animate-spin" style={{animationDirection: 'reverse'}}></div>
+                  <div className="absolute inset-0 border-t-4 border-pink-500 rounded-full animate-spin"></div>
+                  <div className="absolute inset-2 border-t-4 border-purple-500 rounded-full animate-spin" style={{ animationDirection: 'reverse' }}></div>
                 </div>
                 <p className="text-white font-display font-bold text-xl animate-pulse bg-black/30 px-6 py-2 rounded-full backdrop-blur-md border border-white/10">
-                    {loadingMessage}
+                  {loadingMessage}
                 </p>
               </div>
             )}
@@ -189,25 +193,25 @@ const GeminiTools: React.FC = () => {
             )}
 
             {result && mode === 'video' && (
-              <video 
-                src={result} 
-                controls 
-                autoPlay 
-                loop 
+              <video
+                src={result}
+                controls
+                autoPlay
+                loop
                 className="w-full h-full object-contain animate-fade-in"
               />
             )}
 
             {result && (
               <div className="absolute bottom-6 left-6 right-6 flex justify-center">
-                  <a 
-                    href={result} 
-                    download={mode === 'video' ? 'video-magico.mp4' : 'foto-magica.png'}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 transition-all border border-white/40 shadow-lg hover:scale-105"
-                  >
-                    <Download className="w-5 h-5" />
-                    Baixar Resultado
-                  </a>
+                <a
+                  href={result}
+                  download={mode === 'video' ? 'video-magico.mp4' : 'foto-magica.png'}
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 transition-all border border-white/40 shadow-lg hover:scale-105"
+                >
+                  <Download className="w-5 h-5" />
+                  Baixar Resultado
+                </a>
               </div>
             )}
           </div>
