@@ -155,6 +155,7 @@ const GeminiStylist: React.FC<GeminiStylistProps> = ({ products }) => {
                             onClick={handleSend}
                             disabled={isLoading || !input.trim()}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-xl shadow-lg shadow-indigo-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+                            aria-label="Enviar mensagem"
                         >
                             <Send className="w-6 h-6" />
                         </button>

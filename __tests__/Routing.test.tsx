@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { HashRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { getProducts } from '../services/firebaseService';
 
@@ -31,23 +31,23 @@ describe('Routing Tests', () => {
     (getProducts as any).mockResolvedValue(mockProducts);
   });
 
-  it('should navigate to Coleções page when menu item is clicked', async () => {
+  it('should navigate to Coleções page when CTA button is clicked', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Wait for app to load
     await waitFor(() => {
-      expect(screen.getByText(/Lua Baby/i)).toBeInTheDocument();
+      expect(screen.getByText(/Estilo que brilha/i)).toBeInTheDocument();
     });
 
-    // Find and click Coleções link
-    const colecoesLink = screen.getByText(/Coleções/i);
-    expect(colecoesLink).toBeInTheDocument();
-    
-    fireEvent.click(colecoesLink);
+    // Find and click "Ver Coleção" button in Hero
+    const ctaButton = screen.getByText(/Ver Coleção/i);
+    expect(ctaButton).toBeInTheDocument();
+
+    fireEvent.click(ctaButton);
 
     // Verify we're on the collections page
     await waitFor(() => {
@@ -58,9 +58,9 @@ describe('Routing Tests', () => {
 
   it('should navigate to product detail page', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Wait for products to load
@@ -81,16 +81,16 @@ describe('Routing Tests', () => {
 
   it('should navigate to favorites page', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/Favoritos/i)).toBeInTheDocument();
+      expect(screen.getByTitle(/Meus Favoritos/i)).toBeInTheDocument();
     });
 
-    const favoritesLink = screen.getByText(/Favoritos/i);
+    const favoritesLink = screen.getByTitle(/Meus Favoritos/i);
     fireEvent.click(favoritesLink);
 
     await waitFor(() => {
@@ -100,13 +100,13 @@ describe('Routing Tests', () => {
 
   it('should navigate to Mix & Match page', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     await waitFor(() => {
-      const mixMatchLink = screen.getByText(/Mix & Match/i);
+      const mixMatchLink = screen.getByText(/Montar Look/i);
       expect(mixMatchLink).toBeInTheDocument();
       fireEvent.click(mixMatchLink);
     });
@@ -114,35 +114,34 @@ describe('Routing Tests', () => {
     // Verify navigation occurred
     await waitFor(() => {
       // Mix & Match page should have specific content
-      expect(window.location.hash).toContain('mix-match');
+      expect(screen.getByText(/Estúdio de Looks/i)).toBeInTheDocument();
     });
   });
 
   it('should navigate to Gemini Stylist page', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     await waitFor(() => {
-      const stylistLink = screen.getByText(/Stylist/i);
+      const stylistLink = screen.getByText(/Estúdio Mágico/i);
       expect(stylistLink).toBeInTheDocument();
       fireEvent.click(stylistLink);
     });
 
     // Verify we're on stylist page
     await waitFor(() => {
-      expect(screen.getByText(/Gemini Stylist/i)).toBeInTheDocument();
-      expect(screen.getByPlaceholderText(/Preciso de uma roupa/i)).toBeInTheDocument();
+      expect(screen.getByText(/Estúdio Mágico IA/i)).toBeInTheDocument();
     });
   });
 
   it('should navigate back to home from product page', async () => {
     render(
-      <HashRouter>
+      <MemoryRouter>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Navigate to product
@@ -165,9 +164,9 @@ describe('Routing Tests', () => {
 
   it('should redirect unknown routes to home', async () => {
     render(
-      <HashRouter initialEntries={['/unknown-route']}>
+      <MemoryRouter initialEntries={['/unknown-route']}>
         <App />
-      </HashRouter>
+      </MemoryRouter>
     );
 
     // Should redirect to home

@@ -1,0 +1,27 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.13 [39m[90mD:/Projetos_pessoais/Lua-Baby[39m
+
+ [31m❯[39m __tests__/GeminiService.test.tsx [2m([22m[2m4 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[32m 78[2mms[22m[39m
+[31m     [31m×[31m should mock generateTextContent and not make real API calls[39m[32m 51[2mms[22m[39m
+[31m     [31m×[31m should handle API errors gracefully[39m[32m 8[2mms[22m[39m
+[31m     [31m×[31m should not make API calls during tests[39m[32m 8[2mms[22m[39m
+[31m     [31m×[31m should display product cards when AI mentions products[39m[32m 8[2mms[22m[39m
+ [31m❯[39m __tests__/Cart.test.tsx [2m([22m[2m7 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 607[2mms[22m[39m
+     [32m✓[39m should not render when isCartOpen is false[32m 22[2mms[22m[39m
+     [32m✓[39m should render empty state correctly[32m 18[2mms[22m[39m
+     [32m✓[39m should display items and calculate total price correctly[32m 14[2mms[22m[39m
+[31m     [31m×[31m should call removeFromCart when remove button is clicked[39m[33m 530[2mms[22m[39m
+     [32m✓[39m should call clearCart when clear button is clicked[32m 10[2mms[22m[39m
+     [32m✓[39m should display "Finalizar pelo WhatsApp" button when items exist[32m 6[2mms[22m[39m
+     [32m✓[39m should disable action buttons when cart is empty[32m 4[2mms[22m[39m
+ [32m✓[39m __tests__/Routing.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 498[2mms[22m[39m
+ [32m✓[39m __tests__/Wishlist.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 1359[2mms[22m[39m
+     [33m[2m✓[22m[39m should add item to wishlist when heart icon is clicked [33m 376[2mms[22m[39m
+     [33m[2m✓[22m[39m should remove item from wishlist when heart icon is clicked again [33m 341[2mms[22m[39m
+     [33m[2m✓[22m[39m should persist wishlist state across navigation [33m 345[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[31m5 failed[39m[22m[2m | [22m[1m[32m17 passed[39m[22m[90m (22)[39m
+[2m   Start at [22m 11:45:35
+[2m   Duration [22m 3.34s[2m (transform 633ms, setup 825ms, collect 2.33s, tests 2.54s, environment 2.74s, prepare 81ms)[22m
+
